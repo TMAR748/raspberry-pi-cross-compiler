@@ -9,8 +9,8 @@ fi
 # Get current directory
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
-if [ ! -f "$DIR/Toolchain-rpi.cmake" ]; then
-	echo 1>&2 "ERROR: $DIR/Toolchain-rpi.cmake does not exist!"
+if [ ! -f "$DIR/Toolchain-rpi.cmake.bak" ]; then
+	echo 1>&2 "ERROR: $DIR/Toolchain-rpi.cmake.bak does not exist!"
 	echo 1>&2 "Download it with: wget https://raw.githubusercontent.com/Pro/raspi-toolchain/master/Toolchain-rpi.cmake"
 	exit 1
 fi
@@ -35,6 +35,6 @@ export RASPBIAN_ROOTFS=$HOME/rpi/rootfs
 export PATH=/opt/cross-pi-gcc/bin:/opt/cross-pi-gcc/libexec/gcc/arm-linux-gnueabihf/8.3.0:$PATH
 export RASPBERRY_VERSION=1
 
-cmake -DCMAKE_TOOLCHAIN_FILE=$DIR/Toolchain-rpi.cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo $DIR/$1
+cmake -DCMAKE_TOOLCHAIN_FILE=$DIR/Toolchain-rpi.cmake.bak -DCMAKE_BUILD_TYPE=RelWithDebInfo $DIR/$1
 make -j
 
